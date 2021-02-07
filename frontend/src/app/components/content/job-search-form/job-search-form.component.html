@@ -1,1 +1,25 @@
-<p>job-search-form works!</p>
+<form
+  class="flex flex-row flex-wrap w-1/5 mx-auto justify-evenly lg:justify-between lg:w-1/2 xl:w-2/5"
+>
+  <input
+    class="w-40 p-1 mb-2 text-sm border-2 border-gray-400 rounded-md"
+    type="text"
+    name="title"
+    placeholder="Job title"
+  />
+  <input
+    class="w-40 p-1 mb-2 text-sm border-2 border-gray-400 rounded-md"
+    type="text"
+    name="city"
+    placeholder="City"
+  />
+  <select class="p-1 mb-2 text-sm rounded-md" name="source">
+    <option value="monster">Monster</option>
+    <option value="stepstone">Stepstone</option>
+  </select>
+  <input
+    class="p-1 mb-2 text-sm bg-blue-200 border-gray-400 rounded-md"
+    type="submit"
+    value="Search"
+  />
+</form>

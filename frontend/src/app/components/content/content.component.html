@@ -1,0 +1,5 @@
+<div class="mt-10 text-center">
+  <h1 class="mb-5 text-2xl">Start your job search</h1>
+  <app-job-search-form></app-job-search-form>
+  <app-job-card *ngFor="let job of jobs" [job]="job"></app-job-card>
+</div>

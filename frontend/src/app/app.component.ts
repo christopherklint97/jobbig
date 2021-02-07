@@ -1,15 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'app';
+  constructor(private appService: AppService) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.appService.wakeUpServer();
+  }
 
   ngOnDestroy() {}
 }
