@@ -27,7 +27,9 @@ class Job(db.Model):
 
 
 def refresh_db(source: str):
+    """ Delete all job entries and restart the counting """
     db.session.query(Job).filter(Job.source == source).delete()
+    db.session.execute("ALTER SEQUENCE jobs_id_seq RESTART WITH 1")
     db.session.commit()
 
 
@@ -36,3 +38,16 @@ def connect_db(app):
 
     db.app = app
     db.init_app(app)
+
+
+def serialize_job(job):
+    """Serialize a job SQLAlchemy obj to dictionary."""
+
+    return {
+        "id": job.id,
+        "title": job.title,
+        "company": job.company,
+        "location": job.location,
+        "url": job.url,
+        "source": job.source,
+    }

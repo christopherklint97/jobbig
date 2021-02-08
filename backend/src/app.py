@@ -1,4 +1,4 @@
-from .models import Job, db, connect_db, refresh_db
+from .models import Job, db, connect_db, refresh_db, serialize_job
 from flask import Flask, cli, request, jsonify
 from flask_cors import CORS
 import os
@@ -23,7 +23,6 @@ app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "secret123")
 
 connect_db(app)
-
 db.create_all()
 
 
@@ -45,10 +44,10 @@ def get_stepstone():
 
     for item in stepstone_jobs:
         job = Job(
-            title=item.title,
-            company=item.company,
-            location=item.location,
-            url=item.url,
+            title=item["title"],
+            company=item["company"],
+            location=item["location"],
+            url=item["url"],
             source="stepstone",
         )
         db.session.add(job)
@@ -57,7 +56,9 @@ def get_stepstone():
 
     jobs = Job.query.filter_by(source="stepstone").all()
 
-    return jsonify(jobs)
+    serialized = [serialize_job(j) for j in jobs]
+
+    return jsonify(serialized)
 
 
 @app.route("/monster", methods=["GET"])
@@ -72,10 +73,10 @@ def get_monster():
 
     for item in monster_jobs:
         job = Job(
-            title=item.title,
-            company=item.company,
-            location=item.location,
-            url=item.url,
+            title=item["title"],
+            company=item["company"],
+            location=item["location"],
+            url=item["url"],
             source="monster",
         )
         db.session.add(job)
@@ -84,4 +85,6 @@ def get_monster():
 
     jobs = Job.query.filter_by(source="monster").all()
 
-    return jsonify(jobs)
+    serialized = [serialize_job(j) for j in jobs]
+
+    return jsonify(serialized)

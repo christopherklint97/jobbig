@@ -10,6 +10,7 @@ import { JobCardComponent } from './components/content/job-card/job-card.compone
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
 import { ContentComponent } from './components/content/content.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,8 @@ import { ContentComponent } from './components/content/content.component';
     HttpClientModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {

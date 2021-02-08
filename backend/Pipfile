@@ -13,6 +13,7 @@ flask-cors = "*"
 requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
+html5lib = "*"
 
 [dev-packages]
 black = "*"
