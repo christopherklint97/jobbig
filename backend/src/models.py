@@ -26,9 +26,9 @@ class Job(db.Model):
     source = db.Column(db.String(200), nullable=False)
 
 
-def refresh_db(source: str):
+def refresh_db():
     """ Delete all job entries and restart the counting """
-    db.session.query(Job).filter(Job.source == source).delete()
+    db.session.query(Job).delete()
     db.session.execute("ALTER SEQUENCE jobs_id_seq RESTART WITH 1")
     db.session.commit()
 

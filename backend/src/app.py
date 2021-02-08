@@ -38,7 +38,7 @@ def awake():
 def get_stepstone():
     """ Get jobs from Stepstone """
 
-    refresh_db("stepstone")
+    refresh_db()
 
     title = request.args.get("title")
     city = request.args.get("city")
@@ -67,7 +67,7 @@ def get_stepstone():
 def get_monster():
     """ Get jobs from Monster """
 
-    refresh_db("monster")
+    refresh_db()
 
     title = request.args.get("title")
     city = request.args.get("city")
