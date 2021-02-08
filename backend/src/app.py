@@ -15,7 +15,9 @@ cli.load_dotenv(".env")
 
 # get DB_URI from environ variable (useful for production/testing) or,
 # if not set there, use development local db.
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URI", "postgres:///jobbig")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
+    "DATABASE_URL", "postgres:///jobbig"
+)
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = False
